@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Contact </title>
+      <!-- css link  -->
+      <link rel="stylesheet" href="style.css">
+      <!--  icons link  -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <!--  HEADER --------------------------------- -->
+  <header >
+    <!-- NAV BAR  -->
+   <div class="nav container">
+      <!-- logo  -->
+       <a href="index.html" class="logo ">HO<span>ME</span></a>
+        <a href="gallery.html" class="logo"> Gallery </a>
+   </div>
+</header>
+ <!-- ------------- HOME -------------------------------- -->
+ <section class="home" id="home">
+    <div class="home-text container">
+        <a href="index.html" class="back-home"> Back to Home </a>
+      <h2 class="contact-title">Contact Me </h2>
+      <span class="contact-subtitle">Feel free to give your opinion here .</span>
+      <div class="social" >
+        <a href="https://www.instagram.com/rehmattk24?igsh=MTQxcGtxOTduN2o4ZQ==" style="color: rgb(250, 248, 248); align-items: center;">
+            <i class="fa-brands fa-instagram" ></i>  
+        </a>
+        <a href="https://pin.it/3Z0qC63Vk"style="color:rgb(255, 250, 250); align-items: center;">
+            <i class="fa-brands fa-pinterest"></i>
+        </a>
+        <a href="https://snapchat.com/t/L6rxQXdd" style="color: rgb(255, 250, 250); align-items: center;">
+            <i class="fa-brands fa-snapchat"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/rehmat-khan-10068a245" style="color: rgb(255, 255, 255); align-items: center;">
+            <i class="fa-brands fa-linkedin"></i>
+        </a>
+        
+      </div>
+    </div>
+ </section>
+<!-- ---------------------------------------------------- -->
+<section class=" post-container">
+    
+    <h2 class="about-heading"> About </h2>
+    <p class="contact-text">
+       
+        Hi! <br>I am <b>Dua Khan </b>  I enjoy reading books in my spare time, despite not being a bibliophile.
+        <br> This blog is dedicated to Urdu novel reviews. If you enjoy reading books and have read any of them, please leave a review in the message box. 
+        <br> Thankyou !
+    
+    </p>
+</div>
+<!-- message  -->
+<div class="contactright">
+    <form name="submit-to-google-sheet">
+        <div>
+       <label > Name </label>
+        <input type="text" name="Name" placeholder="Your Name" required>
+    </div>
+
+        <div>
+        <label> Email </label>
+        <input type="email" name="email" placeholder="Your Email" required>
+    </div>
+
+    <div>
+        <label> Message</label>
+    <textarea name="Message" placeholder="Your Message Here" rows="6"></textarea>
+</div>
+
+<div>
+<button type="submit" style="background-color: rgb(242, 156, 7); color: aliceblue; border: none; 
+    border-radius: 2px; width: 200px; height: 50px ;cursor: pointer;"> 
+        SUBMIT </button>
+    </div>
+    </form>
+   <span id="msg">  </span>
+</div>
+ </section>
+
+
+    
+
+
+<!-- jquery link  -->
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!--  link to JS  -->
+      <script src="script.js"></script>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxTKGuNfksTgC1wX2e6zLWxZss7n87-BitcN1RPbUjw8oCEDxe7U1NrT-oSgAGYHBD1/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg=document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML=" Message sent successfully "
+                setTimeout(
+                    function(){
+                        msg.innerHTML =""
+                    },5000) 
+                    form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+</body>
+</html>
